@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node main.js",
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/atulsubedi/Web-Crawler.git"
   },
-  "author": "",
+  "author": "atul",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/atulsubedi/Web-Crawler/issues"
