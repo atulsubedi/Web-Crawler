@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/atulsubedi/Web-Crawler/issues"
   },
-  "homepage": "https://github.com/atulsubedi/Web-Crawler#readme"
+  "homepage": "https://github.com/atulsubedi/Web-Crawler#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
