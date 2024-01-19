@@ -7,26 +7,33 @@
     return fullPath
 }
 // // using jsdom
-
- const jsdom = require("jsdom");
-  const { JSDOM } = jsdom;
-function getURLSFromHTML(htmlBody, baseURL){
-    let dom = new JSDOM(htmlBody);
-    let link = dom.window.document.querySelectorAll('a');
-    result = [];
-    for (let i = 0; i < link.length; i++){
-        if(link[i].href.slice(0,1) === '/'){
-            result.push(baseURL + link[i].href)
-            break
-        }
-        result.push(link[i].href.slice(0, -1))
+const { JSDOM } = require('jsdom')
+function getURLsFromHTML(htmlBody, baseURL){
+  const urls = []
+  const dom = new JSDOM(htmlBody)
+  const aElements = dom.window.document.querySelectorAll('a')
+  for (const aElement of aElements){
+    if (aElement.href.slice(0,1) === '/'){
+      try {
+        urls.push(new URL(aElement.href, baseURL).href)
+      } catch (err){
+        console.log(`${err.message}: ${aElement.href}`)
+      }
+    } else {
+      try {
+        urls.push(new URL(aElement.href).href)
+      } catch (err){
+        console.log(`${err.message}: ${aElement.href}`)
+      }
     }
-    return result
+  }
+  return urls
 }
+
 
  module.exports = {
      normalizeURL,
-     getURLSFromHTML
+     getURLsFromHTML
 }
 
 // testing 
