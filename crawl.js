@@ -1,11 +1,11 @@
-//  function normalizeURL(url){
-//      const urlObj = new URL(url)
-//      let fullPath = `${urlObj.hostname}${urlObj.pathname}`
-//     if (fullPath.length > 0 && fullPath.slice(-1) === '/'){
-//         fullPath = fullPath.slice(0,-1)
-//     }
-//     return fullPath
-// }
+ function normalizeURL(url){
+     const urlObj = new URL(url)
+     let fullPath = `${urlObj.hostname}${urlObj.pathname}`
+    if (fullPath.length > 0 && fullPath.slice(-1) === '/'){
+        fullPath = fullPath.slice(0,-1)
+    }
+    return fullPath
+}
 // // using jsdom
 
  const jsdom = require("jsdom");
@@ -25,7 +25,7 @@ function getURLSFromHTML(htmlBody, baseURL){
 }
 
  module.exports = {
-//     normalizeURL,
+     normalizeURL,
      getURLSFromHTML
 }
 
