@@ -1,3 +1,24 @@
+async function crawlPage(crawlUrl){
+    console.log(`crawling ${crawlUrl}....`)
+    try{
+        const resp = await fetch(crawlUrl)
+        if (resp.status > 399){
+            console.log(`Got HTTP error, status code:${resp.status}`)
+            return
+        }
+        const contentType = resp.headers.get('content-type')
+        if (!contentType.includes('text/html')){
+            console.log(`Gon non-html respones: ${contentType}`)
+            return
+        }
+        console.log(await resp.text())
+    }catch (err){
+        console.log(err.message)
+    }
+} 
+
+
+
  function normalizeURL(url){
      const urlObj = new URL(url)
      let fullPath = `${urlObj.hostname}${urlObj.pathname}`
@@ -33,7 +54,8 @@ function getURLsFromHTML(htmlBody, baseURL){
 
  module.exports = {
      normalizeURL,
-     getURLsFromHTML
+     getURLsFromHTML,
+     crawlPage
 }
 
 // testing 
