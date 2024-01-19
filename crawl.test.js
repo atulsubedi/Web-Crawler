@@ -1,5 +1,5 @@
 const { normalizeURL } = require('./crawl.js')
-const { getURLSFromHTML } = require('./crawl.js')
+const { getURLsFromHTML } = require('./crawl.js')
 const { test, expect } = require('@jest/globals')
 
 
@@ -7,9 +7,18 @@ const { test, expect } = require('@jest/globals')
      expect(normalizeURL('https://ATULsubedi.com.np/path/')).toEqual('atulsubedi.com.np/path');
  });
 
-test('get url', () => {
-    expect(getURLSFromHTML('<a href="https://blog.boot.dev"></a>', 'https://blog.boot.dev')).toEqual(['https://blog.boot.dev']);
+test('getURLsFromHTML absolute', () => {
+  const inputURL = 'https://blog.boot.dev'
+  const inputBody = '<html><body><a href="https://blog.boot.dev"><span>Boot.dev></span></a></body></html>'
+  const actual = getURLsFromHTML(inputBody, inputURL)
+  const expected = [ 'https://blog.boot.dev/' ]
+  expect(actual).toEqual(expected)
 })
-test('url', () => {
-    expect(getURLSFromHTML('<a href="/xyz"></a>', 'https://blog.boot.dev')).toEqual(['https://blog.boot.dev/xyz']);
+
+test('getURLsFromHTML relative', () => {
+  const inputURL = 'https://blog.boot.dev'
+  const inputBody = '<html><body><a href="/path/one"><span>Boot.dev></span></a></body></html>'
+  const actual = getURLsFromHTML(inputBody, inputURL)
+  const expected = [ 'https://blog.boot.dev/path/one' ]
+  expect(actual).toEqual(expected)
 })
