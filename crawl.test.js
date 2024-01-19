@@ -8,17 +8,17 @@ const { test, expect } = require('@jest/globals')
  });
 
 test('getURLsFromHTML absolute', () => {
-  const inputURL = 'https://blog.boot.dev'
-  const inputBody = '<html><body><a href="https://blog.boot.dev"><span>Boot.dev></span></a></body></html>'
+  const inputURL = 'https://valorantasia.com'
+  const inputBody = '<html><body><a href="https://valorantasia.com"><span>vandal.dev></span></a></body></html>'
   const actual = getURLsFromHTML(inputBody, inputURL)
-  const expected = [ 'https://blog.boot.dev/' ]
+  const expected = [ 'https://valorantasia.com/' ]
   expect(actual).toEqual(expected)
 })
 
 test('getURLsFromHTML relative', () => {
-  const inputURL = 'https://blog.boot.dev'
-  const inputBody = '<html><body><a href="/path/one"><span>Boot.dev></span></a></body></html>'
+  const inputURL = 'https://valorantasia.com'
+  const inputBody = '<html><body><a href="/path/one"><span>sherrif.dev></span></a></body></html>'
   const actual = getURLsFromHTML(inputBody, inputURL)
-  const expected = [ 'https://blog.boot.dev/path/one' ]
+  const expected = [ 'https://valorantasia.com/path/one' ]
   expect(actual).toEqual(expected)
 })
