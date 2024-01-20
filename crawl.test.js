@@ -3,9 +3,19 @@ const { getURLsFromHTML } = require('./crawl.js')
 const { test, expect } = require('@jest/globals')
 
 
- test('normalize url', () => {
-     expect(normalizeURL('https://ATULsubedi.com.np/path/')).toEqual('atulsubedi.com.np/path');
- });
+test('normalizeUrl', ()=> {
+    const input = 'https://atulsubedi.com.np/'
+    const actual = normalizeURL(input)
+    const expected = 'atulsubedi.com.np'
+    expect(actual).toEqual(expected)
+})
+
+test('normalizeUrl', ()=> {
+    const input = 'https://ATULsubedi.com.np/'
+    const actual = normalizeURL(input)
+    const expected = 'atulsubedi.com.np'
+    expect(actual).toEqual(expected)
+})
 
 test('getURLsFromHTML absolute', () => {
   const inputURL = 'https://valorantasia.com'
